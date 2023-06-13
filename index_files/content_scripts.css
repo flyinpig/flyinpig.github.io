@@ -1,8 +1,0 @@
-#input_frame_container {
-  position: absolute;
-  z-index: 9000000000000000000;
-  min-width: 260px;
-  border: 0px;
-  background: transparent;
-  box-shadow: none;
-}
