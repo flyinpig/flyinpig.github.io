@@ -8,7 +8,7 @@
 <meta name="description" content="Stefan Oprea, Senior Lead Designer with 16 years in UX/UI. Case studies: Williams F1, Mastercard, Bhrigu, IMF, Cambridge, Sage, Sobeys.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@500;600;700&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@500;600;700&family=Special+Gothic+Expanded+One&family=Unbounded:wght@800&display=swap" rel="stylesheet">
 <style>
 :root{--orange:#f45f00;--orange-ink:#c24a00;--navy:#1e3d59;--steel:#48749e;--ink:#111;--text:#4f4f4f;
 --sky:#deeefe;--sky-2:#f2f7fd;--line:rgba(0,0,0,.1);--card:#e5e5e5;
@@ -167,7 +167,7 @@ section{border-top:1px solid var(--line)}
 :root{--pad:clamp(16px,4vw,112px);--wide:2200px}
 body{overflow-x:hidden}
 .intro,.toc,.case,.pres,.contact,.ai{padding-left:calc(var(--pad) + env(safe-area-inset-left,0px));padding-right:calc(var(--pad) + env(safe-area-inset-right,0px))}
-.main section > *{max-width:var(--wide);width:100%}
+.main section > *:not(.proto-x){max-width:var(--wide);width:100%}
 .intro h1{font-size:clamp(38px,5.2vw,88px)}
 .role{font-size:clamp(14px,1.3vw,22px)}
 .lede{font-size:clamp(20px,2.1vw,34px);max-width:52ch}
@@ -207,23 +207,35 @@ body{overflow-x:hidden}
 .sb-link .ext-ico{margin-left:6px;font-size:.85em;color:var(--steel)}
 .sb-link.ext:hover .ext-ico{color:var(--orange-ink)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.proto{background:#14213d;color:#eaf0f7;padding:clamp(48px,6vw,104px) calc(var(--pad) + env(safe-area-inset-right,0px)) clamp(48px,6vw,104px) calc(var(--pad) + env(safe-area-inset-left,0px));border-top:0}
-.proto-in{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(28px,4vw,72px);align-items:center;max-width:var(--wide)}
-.proto-eyebrow{display:flex;align-items:center;gap:10px;font-weight:600;font-size:clamp(13px,1vw,16px);letter-spacing:1.6px;text-transform:uppercase;color:#9fd9cf}
-.live{width:10px;height:10px;border-radius:50%;background:#2fd3b9;box-shadow:0 0 0 0 rgba(47,211,185,.6);animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(47,211,185,.55)}70%{box-shadow:0 0 0 10px rgba(47,211,185,0)}100%{box-shadow:0 0 0 0 rgba(47,211,185,0)}}
+.proto{position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(120% 140% at 0% 0%,#1d2f55 0%,#14213d 55%,#0f1a30 100%);color:#eaf0f7;padding:clamp(32px,3.6vw,56px) calc(var(--pad) + env(safe-area-inset-right,0px)) clamp(32px,3.6vw,56px) calc(var(--pad) + env(safe-area-inset-left,0px));border-top:0}
+.proto-x{position:absolute;z-index:-1;right:clamp(-40px,1vw,40px);top:50%;width:clamp(220px,24vw,420px);aspect-ratio:1;transform:translateY(-54%) rotate(-6deg);opacity:.95;filter:drop-shadow(0 24px 48px rgba(0,0,0,.45))}
+.proto::before{content:"";position:absolute;z-index:-2;right:clamp(-80px,0vw,0px);top:50%;width:clamp(320px,34vw,620px);aspect-ratio:1;transform:translateY(-50%);border-radius:50%;background:radial-gradient(circle,rgba(15,122,110,.40) 0%,rgba(184,71,15,.22) 42%,rgba(20,33,61,0) 70%)}
+.proto-x::after{content:none}
+.proto-x img,.proto-x svg{width:100%;height:100%;object-fit:contain;display:block}
+.proto-in{position:relative;display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "cta" "stats";gap:clamp(18px,1.8vw,26px);max-width:var(--wide);}
+.proto-head{grid-area:head;max-width:min(760px,calc(100% - clamp(220px,24vw,420px)))}
+.proto-cta{grid-area:cta;display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.made-with{display:inline-flex;align-items:center;gap:8px;font-size:clamp(13px,.95vw,15px);color:#c9d4e6;padding:8px 14px;border-radius:999px;border:1px solid rgba(234,240,247,.18);background:rgba(255,255,255,.05)}
+.made-with svg{width:16px;height:16px;flex:none}
+
+.proto-stats{grid-area:stats}
+.proto-eyebrow{display:flex;align-items:center;gap:10px;font-weight:600;font-size:clamp(12px,.9vw,14px);letter-spacing:1.6px;text-transform:uppercase;color:#9fd9cf}
+.live{width:9px;height:9px;border-radius:50%;background:#2fd3b9;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(47,211,185,.55)}70%{box-shadow:0 0 0 9px rgba(47,211,185,0)}100%{box-shadow:0 0 0 0 rgba(47,211,185,0)}}
 @media (prefers-reduced-motion:reduce){.live{animation:none}}
-.proto h2{font-family:var(--display);font-weight:400;font-size:clamp(44px,5.4vw,96px);line-height:1;margin:14px 0 18px;color:#fff}
-.proto-lede{font-size:clamp(20px,1.8vw,30px);line-height:1.3;color:#eaf0f7;max-width:34ch}
-.proto-points{list-style:none;display:flex;flex-direction:column;gap:12px;margin:26px 0 30px;max-width:62ch}
-.proto-points li{font-size:clamp(16px,1.1vw,19px);line-height:1.45;color:#b9c5da;padding-left:22px;position:relative}
-.proto-points li::before{content:"";position:absolute;left:0;top:.6em;width:10px;height:2px;background:#f45f00}
-.proto-points b{color:#fff;font-weight:600}
-.proto-btn{background:#f45f00;border-color:#f45f00;color:#14213d;font-size:clamp(16px,1.2vw,19px);padding:16px 26px}
-.proto-btn:hover{background:#fff;border-color:#fff;color:#14213d}
-.proto-stats{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.2vw,18px)}
-.proto-stats li{border:1px solid rgba(234,240,247,.18);border-radius:24px;padding:clamp(18px,1.8vw,28px);font-size:clamp(14px,1vw,17px);line-height:1.35;color:#b9c5da;background:rgba(255,255,255,.03)}
-.proto-stats b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(30px,3vw,52px);line-height:1;color:#fff;margin-bottom:8px}
+.proto h2{display:flex;align-items:center;gap:.08em;font-family:"Unbounded",var(--display);font-weight:800;font-size:clamp(38px,4vw,68px);line-height:1;margin:10px 0 14px;color:#fff;letter-spacing:-.04em}
+.xd-x{width:1.25em;height:1.25em;margin-left:-.12em;flex:none}
+.proto-lede{font-size:clamp(16px,1.25vw,20px);line-height:1.45;color:#c9d4e6;max-width:56ch}
+.proto-btn{display:inline-flex;align-items:center;gap:10px;background:#f45f00;border:0;color:#14213d;font-weight:700;font-size:clamp(15px,1.1vw,17px);padding:14px 22px;border-radius:14px;box-shadow:0 10px 24px -8px rgba(244,95,0,.55);transition:transform .15s,box-shadow .15s,background .15s}
+.proto-btn:hover{background:#ff7a26;color:#14213d;transform:translateY(-1px);box-shadow:0 14px 30px -8px rgba(244,95,0,.7)}
+.proto-stats{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(8px,1vw,14px);margin-top:4px;max-width:1240px}
+.proto-stats li{display:flex;align-items:baseline;gap:10px;padding:clamp(12px,1.1vw,16px) clamp(14px,1.3vw,20px);border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(234,240,247,.12);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.proto-stats b{font-family:var(--display);font-weight:400;font-size:clamp(22px,1.8vw,30px);line-height:1;color:#fff;flex:none}
+.proto-stats span{font-size:clamp(13px,.95vw,15px);line-height:1.3;color:#c9d4e6}
+@media (max-width:1100px){.proto-stats{grid-template-columns:1fr 1fr}}
+@media (max-width:900px){.proto-in{padding-right:0}.proto-x{width:150px;top:22px;right:12px;transform:rotate(-6deg);opacity:.9}.proto::before{width:260px;right:-60px;top:80px;transform:none}.proto-head{max-width:none;padding-right:120px}}
+@media (max-width:600px){.proto-x,.proto::before{display:none}.proto-head{padding-right:0}}
+@media (max-width:420px){.proto-stats li{flex-direction:column;gap:4px}}
 .sb-live{margin-left:8px;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#0b5e53;background:#d3f5ef;border-radius:20px;padding:2px 8px;align-self:center}
 @media (max-width:900px){.proto-in{grid-template-columns:1fr}}
 /* tablets: portrait and small landscape */
@@ -281,20 +293,16 @@ body{overflow-x:hidden}
 <ul class="proof" aria-label="Selected results"><li><b>93%</b>usability approval for Bhrigu&#x27;s AI form studio</li><li><b>4 steps</b>replace one dense Sell Card form at Mastercard</li><li><b>5 → 3 steps</b>Add Customer flow in Sage&#x27;s invoicing app</li><li><b>3 → 2 steps</b>Add Item flow in Sage&#x27;s invoicing app</li><li><b>7</b>case studies across pharma, fintech, sport, public sector, education and retail</li></ul>
 </section>
 <section class="proto" id="x-duel" aria-labelledby="xduel-t">
+<div class="proto-x" aria-hidden="true"><svg viewBox="0 0 100 100" width="100%" height="100%"><g transform="translate(50 50) rotate(45)"><rect x="-12" y="-48" width="24" height="96" rx="12" fill="#0F7A6E" stroke="#14213D" stroke-width="3"/><rect x="-7" y="-43" width="14" height="14" rx="7" fill="#fff" opacity=".5"/><path d="M-6 8h12M-6 17h12" stroke="#14213D" stroke-opacity=".3" stroke-width="2.4" stroke-linecap="round"/></g><g transform="translate(50 50) rotate(-45)"><rect x="-12" y="-48" width="24" height="96" rx="12" fill="#B8470F" stroke="#14213D" stroke-width="3"/><rect x="-7" y="-43" width="14" height="14" rx="7" fill="#fff" opacity=".5"/><path d="M-6 8h12M-6 17h12" stroke="#14213D" stroke-opacity=".3" stroke-width="2.4" stroke-linecap="round"/></g></svg></div>
 <div class="proto-in">
-<div class="proto-copy">
+<div class="proto-head">
 <p class="proto-eyebrow"><span class="live" aria-hidden="true"></span>Live prototype · test it yourself</p>
-<h2 id="xduel-t">X Duel</h2>
-<p class="proto-lede">A clickable mobile game prototype, open to real testers, with feedback built into every screen.</p>
-<ul class="proto-points">
-<li><b>33 screens</b> from onboarding to results, each in light and dark</li>
-<li><b>18 edge cases</b> designed, not skipped: timed rounds, locked levels, empty states, permission denied, a failed tip payment</li>
-<li><b>In-prototype research:</b> testers rate each screen's clarity from 1 to 5 and leave a note; results roll up per screen with an average score and CSV export</li>
-</ul>
-<div class="cta-row"><a class="btn proto-btn" href="https://claude.ai/artifact/MafSerKeokF95aEHnZX7E4" target="_blank" rel="noopener">Try the prototype <span aria-hidden="true">↗</span><span class="sr">(opens in a new tab)</span></a></div>
+<h2 id="xduel-t" class="xd-word"><svg class="xd-x" role="img" aria-label="X" viewBox="0 0 100 100"><g transform="translate(50 50) rotate(45)"><rect x="-12" y="-48" width="24" height="96" rx="12" fill="#0F7A6E" stroke="#14213D" stroke-width="3"/><rect x="-7" y="-43" width="14" height="14" rx="7" fill="#fff" opacity=".5"/><path d="M-6 8h12M-6 17h12" stroke="#14213D" stroke-opacity=".3" stroke-width="2.4" stroke-linecap="round"/></g><g transform="translate(50 50) rotate(-45)"><rect x="-12" y="-48" width="24" height="96" rx="12" fill="#B8470F" stroke="#14213D" stroke-width="3"/><rect x="-7" y="-43" width="14" height="14" rx="7" fill="#fff" opacity=".5"/><path d="M-6 8h12M-6 17h12" stroke="#14213D" stroke-opacity=".3" stroke-width="2.4" stroke-linecap="round"/></g></svg><span>Duel</span></h2>
+<p class="proto-lede">A clickable mobile game prototype tested by real users, with every edge case designed and a clarity rating built into each screen.</p>
 </div>
+<div class="proto-cta"><a class="btn proto-btn" href="https://claude.ai/artifact/MafSerKeokF95aEHnZX7E4" target="_blank" rel="noopener">Try the prototype <span aria-hidden="true">↗</span><span class="sr">(opens in a new tab)</span></a><span class="made-with"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#d97757" d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>Designed and prototyped with Claude</span></div>
 <ul class="proto-stats" aria-label="Prototype figures">
-<li><b>33</b>screens</li><li><b>2</b>themes, light and dark</li><li><b>3</b>difficulty levels</li><li><b>1–5</b>clarity rating on every screen</li>
+<li><b>33</b><span>screens, light and dark</span></li><li><b>18</b><span>edge cases designed</span></li><li><b>3</b><span>difficulty levels</span></li><li><b>1–5</b><span>clarity rating per screen, with CSV export</span></li>
 </ul>
 </div>
 </section>
